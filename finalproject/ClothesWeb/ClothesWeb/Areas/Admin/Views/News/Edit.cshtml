@@ -1,7 +1,7 @@
 ﻿
 @model ClothesWeb.Models.EF.News
 @{
-    ViewBag.Title = "Thêm mới tin tức";
+    ViewBag.Title = "Cập nhật tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,7 @@
             <a href="/admin/News" class="nav-link">Tin tức</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Thêm mới</a>
+            <a href="#" class="nav-link">Cập nhật</a>
         </li>
     </ul>
 }
@@ -27,12 +27,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Thêm mới Tin tức</h1>
+                <h1>Cập nhật Tin tức</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                    <li class="breadcrumb-item active">Thêm mới</li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
         </div>
@@ -45,16 +45,21 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin thêm mới Tin tức</h3>
+            <h3 class="card-title">Cập nhật Tin tức</h3>
 
 
         </div>
         <div class="card-body">
+            @if (Model != null)
+            {
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Add", "News", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.HiddenFor(x => x.CategoryId)
+                    @Html.HiddenFor(x => x.CreatedDate)
                     <!-- your steps content here -->
                     <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                         <div class="form-group">
@@ -67,12 +72,12 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     @*<input type="file" name="Image" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Chọn file</label>*@
-                                    @Html.TextBoxFor(x=>x.Image, new {@id="txtImage", @class="form-control"})
+                            <label class="custom-file-label" for="exampleInputFile">Chọn file</label>*@
+                                    @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
                                 </div>
                                 <div class="input-group-append">
                                     @*<span class="input-group-text">Tải ảnh</span>*@
-                                    <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage')"/>
+                                    <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage')" />
                                 </div>
                             </div>
                         </div>
@@ -82,7 +87,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Chi tiết</label>
-                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control",@id="txtDetail" })
+                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Hiển thị</label>
+                            @Html.CheckBoxFor(x => x.IsActive)
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Seo Title</label>
@@ -98,8 +107,8 @@
                         </div>
 
                         <div class="form-group">
-                            <a href="/admin/Category" class="btn btn-danger">Quay lại</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <a href="/admin/News" class="btn btn-danger">Quay lại</a>
                         </div>
 
                     </div>
@@ -108,6 +117,8 @@
 
 
             </div>
+            }
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -120,7 +131,7 @@
 </section>
 <!-- /.content -->
 @section scripts{
-        <script>
+    <script>
             $(document).ready(function () {
                 CKEDITOR.replace('txtDetail', {
                     customConfig: '/Content/ckeditor/config.js',
@@ -135,6 +146,6 @@
                 };
                 finder.popup();
             }
-        </script>
-    }
+    </script>
+}
 

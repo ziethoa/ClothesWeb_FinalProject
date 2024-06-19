@@ -28,6 +28,7 @@ namespace ClothesWeb.Models.EF
         public string SeoDescription { get; set; }
         [StringLength(150)]
         public string SeoKeywords { get; set; }
+        public bool IsActive { get; set; }
         public int Position { get; set; }
         public ICollection<News> News { get; set; }
         public ICollection<Posts> Postss { get; set; }

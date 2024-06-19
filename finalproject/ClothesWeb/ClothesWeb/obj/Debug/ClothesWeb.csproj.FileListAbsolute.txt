@@ -220,3 +220,5 @@ C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\Cl
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.UpdateData.resources
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\CKFinder.dll
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\CKFinder.pdb
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.updateDatabase.resources
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.UpdateActive.resources
