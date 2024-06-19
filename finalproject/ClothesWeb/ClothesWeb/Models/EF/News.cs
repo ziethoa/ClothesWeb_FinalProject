@@ -13,7 +13,7 @@ namespace ClothesWeb.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Bạn không được để trống tiêu đề tin tức")]
         [StringLength(250)]
         public string Title { get; set; }
         public string Alias { get; set; }

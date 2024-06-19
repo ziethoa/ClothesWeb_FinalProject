@@ -16,5 +16,9 @@ namespace ClothesWeb.Areas.Admin.Controllers
             var items = db.News.OrderByDescending(x=>x.Id).ToList();
             return View(items);
         }
+        public ActionResult Add()
+        {
+            return View();
+        }
     }
 }
