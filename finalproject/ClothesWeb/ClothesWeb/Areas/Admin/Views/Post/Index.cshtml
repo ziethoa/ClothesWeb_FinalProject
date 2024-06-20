@@ -1,10 +1,7 @@
 ﻿
-@model PagedList.PagedList<ClothesWeb.Models.EF.News>
-@using PagedList.Mvc;
-@using PagedList;
+@model IEnumerable<ClothesWeb.Models.EF.Posts>
 @{
-    ViewBag.Title = "Danh sách tin tức";
-
+    ViewBag.Title = "Bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +15,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/News" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/Post" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -45,28 +42,14 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách tin tức</h3>
+            <h3 class="card-title">Danh sách @ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/News/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/Post/add" class="btn btn-primary">Thêm mới</a>
                 <a href="#" class="btn btn-danger" id="BtnDeleteAll">Xoá</a>
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-6">
-                    @using (Html.BeginForm("index", "News", FormMethod.Get,new { }))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBox("SearchText", new {@class= "form-control" })
-                            @*<input type="text" name="searchText" class="form-control">*@
-                            <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -76,13 +59,14 @@
                         <th>Tiêu đề tin tức</th>
                         <th>Ngày tạo</th>
                         <th>Hiển thị</th>
-                        <th style="width: 150px;"></th>
+                        <th>Thứ tự</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1; ;
+                        var i = 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class = 'fa fa-check text-success'></i>" : "<i class = 'fas fa-times text-danger'></i>";
@@ -96,7 +80,7 @@
                                     <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/News/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/Post/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xoá</a>
                                 </td>
                             </tr>
@@ -113,14 +97,6 @@
                     }
                 </tbody>
             </table>
-
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6" style="text-align: right">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-                </div>
-            </div>
-            
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -159,7 +135,7 @@
                     var conf = confirm('Bạn có muốn xoá các bản ghi này hay không ?');
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/News/deleteAll',
+                            url: '/admin/Post/deleteAll',
                             type: 'POST',
                             data: { ids: str },
                             success: function (rs) {
@@ -190,7 +166,7 @@
                 var conf = confirm('Bạn có muốn xoá bản ghi này không ?');
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/News/delete',
+                        url: '/admin/Post/delete',
                         type: 'POST',
                         data: { id: id },
                         success: function (rs) {
@@ -209,21 +185,21 @@
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.data("id");
-                $.ajax({
-                    url: '/admin/News/IsActive',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function (rs) {
-                        if (rs.success) {
-                            if (rs.isActive) {
-                                btn.html("<i class='fa fa-check text-success'></i>");
-                            } else {
-                                btn.html("<i class='fas fa-times text-danger'></i>");
+                    $.ajax({
+                        url: '/admin/Post/IsActive',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                if (rs.isActive) {
+                                    btn.html("<i class='fa fa-check text-success'></i>");
+                                } else {
+                                    btn.html("<i class='fas fa-times text-danger'></i>");
+                                }
                             }
-                        }
 
-                    }
-                });
+                        }
+                    });
             });
         });
     </script>
