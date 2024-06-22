@@ -218,6 +218,14 @@
     <Compile Include="Migrations\202406212305309_UpdateProductCategory.Designer.cs">
       <DependentUpon>202406212305309_UpdateProductCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406221721568_Update2306.cs" />
+    <Compile Include="Migrations\202406221721568_Update2306.Designer.cs">
+      <DependentUpon>202406221721568_Update2306.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406221742462_Update23061.cs" />
+    <Compile Include="Migrations\202406221742462_Update23061.Designer.cs">
+      <DependentUpon>202406221742462_Update23061.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -3155,6 +3163,7 @@
     <Content Include="Scripts\autoNumeric-autoNumeric-c426664\bower.json" />
     <Content Include="Scripts\autoNumeric-autoNumeric-c426664\change log.md" />
     <Content Include="Scripts\autoNumeric-autoNumeric-c426664\readme.md" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3249,6 +3258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406212305309_UpdateProductCategory.resx">
       <DependentUpon>202406212305309_UpdateProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406221721568_Update2306.resx">
+      <DependentUpon>202406221721568_Update2306.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406221742462_Update23061.resx">
+      <DependentUpon>202406221742462_Update23061.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
