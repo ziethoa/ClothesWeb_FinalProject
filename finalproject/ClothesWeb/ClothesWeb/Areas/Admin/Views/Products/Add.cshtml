@@ -90,8 +90,13 @@
                                             @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Danh mục</label>
+                                            @Html.DropDownListFor(x => x.ProductCategoryId, ViewBag.ProductCategory as SelectList, "-Chọn danh mục sản phẩm-", new { @class = "form-control", @placeholder = "Mô tả sản phẩm" })
+                                            @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Chi tiết sản phẩm</label>
-                                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @placeholder = "Chi tiết sản phẩm" })
+                                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id="txtDetail"})
                                             @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="row">
@@ -130,7 +135,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "IsHotCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @id = "IsHotCheckbox" })
                                                         <label for="IsHotCheckbox" class="custom-control-label">Sản phẩm hot</label>
                                                     </div>
                                                 </div>
@@ -138,7 +143,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox" })
                                                         <label for="IsFeatureCheckbox" class="custom-control-label">Nổi bật</label>
                                                     </div>
                                                 </div>
@@ -146,12 +151,74 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "IsSaleCheckbox"})
+                                                        @Html.CheckBoxFor(x => x.IsSale, new { @class = "custom-control-input", @id = "IsSaleCheckbox" })
                                                         <label for="IsSaleCheckbox" class="custom-control-label">Khuyến mãi</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="timeline">
+                                        <div class="row">
+                                            <div class="col-md-12 text-right">
+                                                <input type="button" class="btn btn-primary" id="iTaiAnh" onclick="BrowseServer()" value="Tải ảnh"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <table class="table table-hover" id="tbAnhSanPham">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">#</th>
+                                                            <th class="text-center">Ảnh</th>
+                                                            <th class="text-center">Ảnh đại diện</th>
+                                                            <th class="text-center">Thao tác</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbHtml">
+                                                        @*<tr>
+                                                            <td class="text-center">1</td>
+                                                            <td class="text-center"><img width="80" src="~/Uploads/images/zzz.png" /></td>
+                                                            <td class="text-center"><input type="radio" name="rDefault" /></td>
+                                                            <td class="text-center"><a href="#" class="btn btn-sm btn-danger">Xoá</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">2</td>
+                                                            <td class="text-center"><img width="80" src="~/Uploads/images/zzz.png" /></td>
+                                                            <td class="text-center"><input type="radio" name="rDefault" /></td>
+                                                            <td class="text-center"><a href="#" class="btn btn-sm btn-danger">Xoá</a></td>
+                                                        </tr>*@
+                                                    </tbody>
+                                                </table>
+                                                <input type="hidden" id="tCurrentId" value="0"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="settings">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="inputName" class="col-sm-2 col-form-label">SEO Title</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoTitle, new { @class = "form-control", @placeholder = "SEO Title" })
+                                                    @Html.ValidationMessageFor(x => x.SeoTitle, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputEmail" class="col-sm-2 col-form-label">SEO Keywords</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoKeywords, new { @class = "form-control", @placeholder = "SEO Keywords" })
+                                                    @Html.ValidationMessageFor(x => x.SeoKeywords, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputName2" class="col-sm-2 col-form-label">SEO Description</label>
+                                                <div class="col-sm-10">
+                                                    @Html.TextBoxFor(x => x.SeoDescription, new { @class = "form-control", @placeholder = "SEO Description" })
+                                                    @Html.ValidationMessageFor(x => x.SeoDescription, null, new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
                                     </div>
                                     <!-- /.tab-content -->
                                 </div><!-- /.card-body -->
@@ -184,10 +251,23 @@
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (fileUrl)
                 {
-                    document.getElementById(field).value = fileUrl;
+                    addImageProduct(fileUrl);
                 };
                 finder.popup();
-            }
+        }
+        function addImageProduct(url) {
+            
+            var temp = $('#tCurrentId').val();
+            var currentId = parseInt(temp) + 1;
+            var str = "";
+            str += `<tr>
+                        <td class="text-center">${currentId}</td >
+                        <td class="text-center"><img width="80" src="${url}" /></td>
+                        <td class="text-center"><input type="radio" name="rDefault" /></td>
+                        <td class="text-center"><a href="#" class="btn btn-sm btn-danger">Xoá</a></td>
+                    </tr>`;
+            $('#tbHtml').append(str);
+        }
     </script>
 }
 

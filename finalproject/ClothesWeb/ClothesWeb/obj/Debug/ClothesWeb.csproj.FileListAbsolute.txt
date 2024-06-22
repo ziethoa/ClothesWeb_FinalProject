@@ -227,3 +227,4 @@ C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\Cl
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\PagedList.Mvc.dll
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\PagedList.xml
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\PagedList.Mvc.xml
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.UpdateProductCategory.resources

@@ -66,12 +66,9 @@
                         <label for="exampleInputFile">Ảnh đại diện</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                @*<input type="file" name="Image" class="custom-file-input" id="exampleInputFile">
-                    <label class="custom-file-label" for="exampleInputFile">Chọn file</label>*@
                                 @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
                             </div>
                             <div class="input-group-append">
-                                @*<span class="input-group-text">Tải ảnh</span>*@
                                 <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage')" />
                             </div>
                         </div>

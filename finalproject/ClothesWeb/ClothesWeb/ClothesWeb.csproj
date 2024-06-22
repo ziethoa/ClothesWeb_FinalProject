@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202406201641313_ChangeModels.Designer.cs">
       <DependentUpon>202406201641313_ChangeModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406212305309_UpdateProductCategory.cs" />
+    <Compile Include="Migrations\202406212305309_UpdateProductCategory.Designer.cs">
+      <DependentUpon>202406212305309_UpdateProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -3139,6 +3143,8 @@
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3150,6 +3156,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\images\BB1oygxb.jpg" />
+    <Content Include="Uploads\images\Screenshot 2024-06-11 154914.png" />
+    <Content Include="Uploads\images\zzz.png" />
+    <Content Include="Uploads\images\zzzzz.png" />
+    <Content Include="Uploads\_thumbs\Images\BB1oygxb.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Screenshot 2024-06-11 154914.png" />
+    <Content Include="Uploads\_thumbs\Images\zzz.png" />
+    <Content Include="Uploads\_thumbs\Images\zzzzz.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3189,6 +3203,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Uploads\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3221,6 +3236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406201641313_ChangeModels.resx">
       <DependentUpon>202406201641313_ChangeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406212305309_UpdateProductCategory.resx">
+      <DependentUpon>202406212305309_UpdateProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
