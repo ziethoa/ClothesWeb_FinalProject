@@ -146,7 +146,37 @@ namespace ClothesWeb.Areas.Admin.Controllers
                 item.IsActive = !item.IsActive;
                 db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return Json(new { success = true, isActive = item.IsActive });
+                return Json(new { success = true, IsActive = item.IsActive });
+            }
+            return Json(new { success = false });
+
+        }
+
+        [HttpPost]
+        public ActionResult IsHome(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsHome = !item.IsHome;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsHome = item.IsHome });
+            }
+            return Json(new { success = false });
+
+        }
+
+        [HttpPost]
+        public ActionResult IsSale(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsSale = !item.IsSale;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsSale = item.IsSale });
             }
             return Json(new { success = false });
 
