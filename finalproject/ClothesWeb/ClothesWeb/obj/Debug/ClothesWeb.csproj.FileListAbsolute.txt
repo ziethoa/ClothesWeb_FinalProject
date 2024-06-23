@@ -230,3 +230,4 @@ C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\Cl
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.UpdateProductCategory.resources
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.Update2306.resources
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.Update23061.resources
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.update10h2306.resources
