@@ -43,7 +43,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách tin tức</h3>
+            <h3 class="card-title">Danh mục sản phẩm</h3>
 
             <div class="card-tools">
                 <a href="/admin/ProductCategory/add" class="btn btn-primary">Thêm mới</a>
@@ -57,6 +57,7 @@
                     <tr>
                         <th><input type="checkbox" id="SelectAll" /></th>
                         <th>STT</th>
+                        <th>Hình ảnh</th>
                         <th>Tiêu đề</th>
                         <th>Ngày tạo</th>
                         @*<th>Hiển thị</th>*@
@@ -73,6 +74,7 @@
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td>@i</td>
+                                <td><img src="@item.Icon" width="50" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 @*<td class="text-center">
