@@ -26,7 +26,7 @@
                     <div class="sidebar_title">
                         <h5>Product Category</h5>
                     </div>
-                    @Html.Action("MenuLeft", "Menu", new { id=ViewBag.CateId})
+                    @Html.Action("MenuLeft", "Menu", new { id = ViewBag.CateId })
                 </div>
 
                 <!-- Price Range Filtering -->
@@ -35,7 +35,10 @@
                         <h5>Filter by Price</h5>
                     </div>
                     <p>
-                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" />
+                        <input type="hidden" id="FromAmount" />
+                        <input type="hidden" id="ToAmount" />
+
                     </p>
                     <div id="slider-range"></div>
                     <div class="filter_button"><span>filter</span></div>
@@ -160,10 +163,13 @@
                                                     @if (item.PriceSale > 0)
                                                     {
                                                         <div class="product_price">@ClothesWeb.Common.Common.FormatNumber(item.PriceSale, 0)<span>@ClothesWeb.Common.Common.FormatNumber(item.Price, 0)</span></div>
+                                                        <input type="hidden" value="@item.PriceSale" />
                                                     }
                                                     else
                                                     {
                                                         <div class="product_price">@ClothesWeb.Common.Common.FormatNumber(item.Price, 0)</div>
+                                                        <div style="display: none;" class="in_product_price">@item.Price</div>
+
                                                     }
                                                 </div>
                                             </div>
@@ -173,6 +179,21 @@
                                 }
 
                             </div>
+
+                            @*<div class="product-item accessories" style="position: absolute; left: 0px; top: 0px;">
+                                    <div class="product product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                                        <div class="product_image">
+                                            <img src="images/product_4.png" alt="">
+                                        </div>
+                                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                        <div class="favorite favorite_left"></div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+                                            <div class="product_price">$410.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                </div>*@
 
                             <!-- Product Sorting -->
 
@@ -217,5 +238,6 @@
 </div>
 
 @section scripts{
-    <script src="~/Content/assets/js/categories_custom.js"></script>
+
+    <script src="~/Content/assets/js/categories_price.js"></script>
 }
