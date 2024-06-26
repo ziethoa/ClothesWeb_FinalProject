@@ -1,8 +1,6 @@
 ﻿
-
-@using ClothesWeb.Common
 @{
-    ViewBag.Title = "Giỏ hàng";
+    ViewBag.Title = "Đặt hàng thành công";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
@@ -26,14 +24,7 @@
 
             <div class="row">
                 <div class="col-md-12" id="load_data">
-                    @Html.Action("Partial_Item_Cart", "ShoppingCart")
-
-                </div>
-                <div class="col-md-12">
-                    <div class="text-right">
-                        <a href="#" class="btn btn-sm btn-danger btnDeleteAll">Xoá tất cả</a>
-                        <a href="/thanh-toan" class="btn btn-sm btn-success">Thanh toán</a>
-                    </div>
+                    <h2>Bạn đã mua hàng thành công</h2>
                 </div>
             </div>
         </div>
@@ -44,3 +35,4 @@
 
     <script src="~/Content/assets/js/categories_price.js"></script>
 }
+

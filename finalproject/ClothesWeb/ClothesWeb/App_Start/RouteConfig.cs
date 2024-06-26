@@ -14,6 +14,13 @@ namespace ClothesWeb
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "CheckOut",
+                url: "thanh-toan",
+                defaults: new { controller = "ShoppingCart", action = "CheckOut", alias = UrlParameter.Optional },
+                namespaces: new[] { "ClothesWeb.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "ShoppingCart",
                 url: "gio-hang",
                 defaults: new { controller = "ShoppingCart", action = "Index", alias = UrlParameter.Optional },

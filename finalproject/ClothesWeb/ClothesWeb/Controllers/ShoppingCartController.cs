@@ -1,4 +1,5 @@
 ﻿using ClothesWeb.Models;
+using ClothesWeb.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace ClothesWeb.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {
@@ -16,7 +18,33 @@ namespace ClothesWeb.Controllers
             return View();
         }
 
+        public ActionResult CheckOut()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if (cart != null)
+            {
+                ViewBag.CheckCart = cart;
+            }
+            return View();
+        }
+
+        public ActionResult CheckOutSuccess()
+        {
+           
+            return View();
+        }
+
         public ActionResult Partial_Item_Cart()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["cart"];
+            if (cart != null)
+            {
+                return PartialView(cart.Items);
+            }
+            return PartialView();
+        }
+
+        public ActionResult Partial_Item_CheckOutCart()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
             if (cart != null)
@@ -34,6 +62,47 @@ namespace ClothesWeb.Controllers
                 return Json(new { count = cart.Items.Count }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { count = 0}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Partial_CheckOut()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(OrderViewModels req)
+        {
+            var code = new { Success = false, Code = -1 };
+            if(ModelState.IsValid)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["cart"];
+                if (cart != null)
+                {
+                    Order order = new Order();
+                    order.CustomerName = req.CustomerName;
+                    order.Phone = req.Phone;
+                    order.Address = req.Address;
+                    cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail {
+                        ProductId = x.ProductId,
+                        Quantity = x.Quantity,
+                        Price=x.Price
+                    }));
+                    order.TotalAmount = cart.Items.Sum(x=>(x.Price*x.Quantity));
+                    order.TypePayment = req.TypePayment;
+                    order.CreatedDate = DateTime.Now;
+                    order.ModifiedDate = DateTime.Now;
+                    order.CreatedBy = req.Phone;
+                    Random rd = new Random();
+                    order.Code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    //order.CustomerName = req.CustomerName;
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+                    cart.ClearCart();
+                    return RedirectToAction("CheckOutSuccess");
+                }
+            }
+            return Json(code);
         }
 
         [HttpPost]
