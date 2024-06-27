@@ -21,7 +21,7 @@ namespace ClothesWeb.Controllers
         public ActionResult CheckOut()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 ViewBag.CheckCart = cart;
             }
@@ -37,7 +37,7 @@ namespace ClothesWeb.Controllers
         public ActionResult Partial_Item_Cart()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -47,7 +47,7 @@ namespace ClothesWeb.Controllers
         public ActionResult Partial_Item_CheckOutCart()
         {
             ShoppingCart cart = (ShoppingCart)Session["cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
@@ -83,6 +83,7 @@ namespace ClothesWeb.Controllers
                     order.CustomerName = req.CustomerName;
                     order.Phone = req.Phone;
                     order.Address = req.Address;
+                    order.Email = req.Email;
                     cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail {
                         ProductId = x.ProductId,
                         Quantity = x.Quantity,

@@ -26,6 +26,7 @@ namespace ClothesWeb.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<Models.ApplicationDbContext>(null);
         }
 
         public DbSet<Category> Categories { get; set; }
