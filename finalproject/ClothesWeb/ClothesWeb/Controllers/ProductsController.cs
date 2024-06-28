@@ -1,4 +1,6 @@
 ﻿using ClothesWeb.Models;
+using ClothesWeb.Models.EF;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,18 @@ namespace ClothesWeb.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var items = db.Products.ToList();
-            
-            
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
+            var pageSize = 12;//bản ghi
+            if (page == null)
+            {
+                page = 1;
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
 
@@ -24,14 +33,28 @@ namespace ClothesWeb.Controllers
             var item = db.Products.Find(id);
             return View(item);
         }
-        public ActionResult ProductCategory(string alias, int id)
+        public ActionResult ProductCategory(string alias, int id, int? page)
         {
-            var items = db.Products.ToList();
+            var cate = db.ProductCategories.Find(id);
+
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
+            var pageSize = 12;//bản ghi
+            if (page == null)
+            {
+                page = 1;
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            
+            
+
+            
             if (id > 0)
             {
-                items = items.Where(x => x.ProductCategoryId == id).ToList();
+                items = items.Where(x => x.ProductCategoryId == id).ToPagedList(pageIndex, pageSize);
+                ViewBag.PageSize = pageSize;
+                ViewBag.Page = page;
             }
-            var cate = db.ProductCategories.Find(id);
+            
             if(cate!=null)
             {
                 ViewBag.CateName = cate.Title;

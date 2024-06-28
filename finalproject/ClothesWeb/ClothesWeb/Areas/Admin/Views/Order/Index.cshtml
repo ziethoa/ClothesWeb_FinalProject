@@ -126,16 +126,14 @@
                 $('#txtOrderId').val(id);
                 $('#modal-default').modal('show');
             });
-        });
 
-        $(document).ready(function () {
             $('body').on('click', '#btnSave', function () {
                 var id = $('#txtOrderId').val(id);
                 var tt = $('#ddTrangThai').val(id);
                 $.ajax({
                     url: '/admin/order/UpdateTT',
                     type: 'POST',
-                    data: { id: id, trangthai : tt },
+                    data: { id: id, trangthai: tt },
                     success: function (res) {
                         if (res.Success) {
                             location.reload();
@@ -144,5 +142,7 @@
                 });
             });
         });
+
+       
     </script>
 }
