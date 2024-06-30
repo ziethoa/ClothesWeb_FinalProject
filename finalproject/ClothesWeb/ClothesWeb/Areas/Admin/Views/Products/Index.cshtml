@@ -81,6 +81,7 @@
                     <th>Ngày tạo</th>
                     <th>Home</th>
                     <th>Sale</th>
+                    <th>New</th>
                     <th>Hiển thị</th>
                     <th style="width: 150px;"></th>
                 </tr>
@@ -94,6 +95,7 @@
                         var strCheck = item.IsActive ? "<i class = 'fa fa-check text-success'></i>" : "<i class = 'fas fa-times text-danger'></i>";
                         var strCheckHome = item.IsHome ? "<i class = 'fa fa-check text-success'></i>" : "<i class = 'fas fa-times text-danger'></i>";
                         var strCheckSale = item.IsSale ? "<i class = 'fa fa-check text-success'></i>" : "<i class = 'fas fa-times text-danger'></i>";
+                        var strCheckNew = item.IsNew ? "<i class = 'fa fa-check text-success'></i>" : "<i class = 'fas fa-times text-danger'></i>";
 
                         var strImg = "";
                         var CheckImage = item.ProductImage.FirstOrDefault(x => x.IsDefault);
@@ -116,6 +118,9 @@
                             </td>
                             <td class="text-center">
                                 <a href='#' data-id="@item.Id" class="btnSale">@Html.Raw(strCheckSale)</a>
+                            </td>
+                            <td class="text-center">
+                                <a href='#' data-id="@item.Id" class="btnNew">@Html.Raw(strCheckNew)</a>
                             </td>
                             <td class="text-center">
                                 <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
@@ -309,6 +314,27 @@
                     success: function (rs) {
                         if (rs.success) {
                             if (rs.IsSale) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            } else {
+                                btn.html("<i class='fas fa-times text-danger'></i>");
+                            }
+                        }
+
+                    }
+                });
+            });
+
+            $('body').on('click', '.btnNew', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/Products/IsNew',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.IsNew) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
                             } else {
                                 btn.html("<i class='fas fa-times text-danger'></i>");

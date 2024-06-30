@@ -43,7 +43,7 @@ namespace ClothesWeb.Areas.Admin.Controllers
             if(ModelState.IsValid)
             {
                 model.CreatedDate = DateTime.Now;
-                model.CategoryId = 2;
+                
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = ClothesWeb.Models.Common.Filter.FilterChar(model.Title);
                 db.News.Add(model);

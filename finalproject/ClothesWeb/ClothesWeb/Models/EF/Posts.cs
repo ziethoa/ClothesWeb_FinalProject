@@ -24,7 +24,7 @@ namespace ClothesWeb.Models.EF
         public string Detail { get; set; }
         [StringLength(250)]
         public string Image { get; set; }
-        public int CategoryId { get; set; }
+        
         [StringLength(250)]
         public string SeoTitle { get; set; }
         [StringLength(500)]

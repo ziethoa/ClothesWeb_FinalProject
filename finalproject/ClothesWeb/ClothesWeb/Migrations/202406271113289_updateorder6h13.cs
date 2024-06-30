@@ -7,6 +7,8 @@ namespace ClothesWeb.Migrations
     {
         public override void Up()
         {
+            Sql("UPDATE dbo.tb_Order SET Email = 'default@example.com' WHERE Email IS NULL");
+
             AlterColumn("dbo.tb_Order", "Email", c => c.String(nullable: false));
         }
         

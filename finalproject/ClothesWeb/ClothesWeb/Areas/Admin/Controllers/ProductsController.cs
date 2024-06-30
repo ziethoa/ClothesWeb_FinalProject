@@ -181,5 +181,21 @@ namespace ClothesWeb.Areas.Admin.Controllers
             return Json(new { success = false });
 
         }
+
+        [HttpPost]
+        public ActionResult IsNew(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                item.IsNew = !item.IsNew;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, IsNew = item.IsNew });
+            }
+            return Json(new { success = false });
+
+        }
+
     }
 }

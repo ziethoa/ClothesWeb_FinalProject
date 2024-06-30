@@ -44,10 +44,6 @@ namespace ClothesWeb.Controllers
                 page = 1;
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
-            
-            
-
-            
             if (id > 0)
             {
                 items = items.Where(x => x.ProductCategoryId == id).ToPagedList(pageIndex, pageSize);
@@ -61,6 +57,12 @@ namespace ClothesWeb.Controllers
             }
             ViewBag.CateId = id;
             return View(items);
+        }
+
+        public ActionResult Partial_ProductNew()
+        {
+            var items = db.Products.Where(x => x.IsNew && x.IsActive).Take(12).ToList();
+            return PartialView(items);
         }
 
         public ActionResult Partial_itemsByCateId()

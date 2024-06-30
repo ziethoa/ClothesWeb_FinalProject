@@ -22,7 +22,6 @@ namespace ClothesWeb.Models.EF
         [AllowHtml]
         public string Detail { get; set; }
         public string Image { get; set; }
-        public int CategoryId { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }

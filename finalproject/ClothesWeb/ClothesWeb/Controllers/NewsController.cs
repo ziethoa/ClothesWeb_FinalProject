@@ -23,5 +23,11 @@ namespace ClothesWeb.Controllers
             var item = db.News.Find(id);
             return View(item);
         }
+
+        public ActionResult Partial_News_Home()
+        {
+            var items = db.News.Take(3).ToList();
+            return PartialView(items);
+        }
     }
 }

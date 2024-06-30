@@ -256,3 +256,5 @@ C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\Cl
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.updateorder6h11.resources
 C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.updateorder6h13.resources
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.updatedatabase6h16.resources
+C:\Users\HOA NGUYEN\Desktop\finalproject\ClothesWeb_FinalProject\finalproject\ClothesWeb\ClothesWeb\obj\Debug\ClothesWeb.Migrations.updatedatabase4h44.resources
